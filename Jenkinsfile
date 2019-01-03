@@ -8,8 +8,7 @@ pipeline {
   stages {
     stage('Build Jar') {
       steps {
-        sh '''mvn clean package -DskipTests
-printenv'''
+        sh 'mvn clean package -DskipTests'
       }
     }
     stage('Build Image') {
@@ -41,8 +40,8 @@ printenv'''
     }
     stage('Run Test') {
       steps {
-        sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=firefox -e MODULE=search-module.xml -v ./../selenium_report/search:/usr/share/tag/test-output --network jenkins-${BUILD_NUMBER} velraja/containertest'
-        sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=chrome -e MODULE=order-module.xml -v ./../selenium_report/order:/usr/share/tag/test-output  --network jenkins-${BUILD_NUMBER} velraja/containertest'
+        sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=firefox -e MODULE=search-module.xml -v ${HOME}/selenium_report/search:/usr/share/tag/test-output --network jenkins-${BUILD_NUMBER} velraja/containertest'
+        sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=chrome -e MODULE=order-module.xml -v ${HOME}/selenium_report/order:/usr/share/tag/test-output  --network jenkins-${BUILD_NUMBER} velraja/containertest'
       }
     }
   }
