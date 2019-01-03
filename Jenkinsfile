@@ -45,14 +45,4 @@ pipeline {
       }
     }
   }
-  post {
-    always {
-      sh 'docker rm -vf chrome-${BUILD_NUMBER}'
-      sh 'docker rm -vf firefox-${BUILD_NUMBER}'
-      sh 'docker rm -vf selenium-hub-${BUILD_NUMBER}'
-      sh 'docker network rm jenkins-${BUILD_NUMBER}'
-
-    }
-
-  }
 }
