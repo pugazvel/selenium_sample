@@ -12,7 +12,7 @@ pipeline {
       }
     }
   }
-  parameters {
-    string(name: 'network', defaultValue: 'jenkins-${BUILD_NUMBER}', description: '')
-  }
+  environment {
+        NETWORK = 'jenkins-${BUILD_NUMBER}'
+    }
 }
