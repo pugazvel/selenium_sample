@@ -8,11 +8,11 @@ pipeline {
   stages {
     stage('Build Jar') {
       steps {
-        sh 'echo ${params.network}'
+        sh 'printenv'
       }
     }
   }
   environment {
-        NETWORK = 'jenkins-${BUILD_NUMBER}'
-    }
+    NETWORK = 'jenkins-${BUILD_NUMBER}'
+  }
 }
