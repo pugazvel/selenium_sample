@@ -13,6 +13,6 @@ pipeline {
     }
   }
   environment {
-    NETWORK = 'jenkins-'${BUILD_NUMBER}
+    NETWORK = 'jenkins-${env.BUILD_NUMBER}'
   }
 }
