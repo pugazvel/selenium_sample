@@ -3,13 +3,7 @@ pipeline {
     node {
       label 'AppServer'
     }
-  }
-  environment {
-    network='jenkins-${BUILD_NUMBER}'
-    seleniumHub='selenium-hub-${BUILD_NUMBER}'
-    chrome='chrome-${BUILD_NUMBER}'
-    firefox='firefox-${BUILD_NUMBER}'
-    containertest='conatinertest-${BUILD_NUMBER}'
+
   }
   stages {
     stage('Build Jar') {
@@ -38,8 +32,15 @@ pipeline {
     }
     stage('Setting Up Selenium Grid') {
       steps {
-        sh 'docker network create jenkins-${BUILD_NUMBER}'
+        sh 'docker network create ${network}'
       }
     }
+  }
+  environment {
+    network = 'jenkins-${BUILD_NUMBER}'
+    seleniumHub = 'selenium-hub-${BUILD_NUMBER}'
+    chrome = 'chrome-${BUILD_NUMBER}'
+    firefox = 'firefox-${BUILD_NUMBER}'
+    containertest = 'conatinertest-${BUILD_NUMBER}'
   }
 }
