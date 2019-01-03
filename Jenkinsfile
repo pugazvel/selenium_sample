@@ -6,11 +6,6 @@ pipeline {
 
   }
   stages {
-    stage("make param global") {
-       steps {
-         env.network = sh (script: 'jenkins-${BUILD_NUMBER}', returnStdout: true).trim()
-        }
-    }
     stage('Build Jar') {
       steps {
         sh 'mvn clean package -DskipTests'
