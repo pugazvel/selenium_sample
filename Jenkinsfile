@@ -41,15 +41,18 @@ pipeline {
     stage('Run Test') {
       steps {
         sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=firefox -e MODULE=search-module.xml -v ${WORKSPACE}/search:/usr/share/tag/test-output --network jenkins-${BUILD_NUMBER} velraja/containertest'
+        sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=chrome -e MODULE=order-module.xml -v ${WORKSPACE}/order:/usr/share/tag/test-output  --network jenkins-${BUILD_NUMBER} velraja/containertest'
       }
     }
   }
-  post{
-      always {
-         sh 'docker rm -vf chrome-${BUILD_NUMBER}'
-         sh 'docker rm -vf firefox-${BUILD_NUMBER}'
-         sh 'docker rm -vf selenium-hub-${BUILD_NUMBER}'
-         sh 'docker network rm jenkins-${BUILD_NUMBER}'
-      }   
-   }
+  post {
+    always {
+      sh 'docker rm -vf chrome-${BUILD_NUMBER}'
+      sh 'docker rm -vf firefox-${BUILD_NUMBER}'
+      sh 'docker rm -vf selenium-hub-${BUILD_NUMBER}'
+      sh 'docker network rm jenkins-${BUILD_NUMBER}'
+
+    }
+
+  }
 }
