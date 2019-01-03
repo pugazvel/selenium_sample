@@ -8,8 +8,7 @@ pipeline {
   stages {
     stage("make param global") {
        steps {
-         tmp_param =  sh (script: 'jenkins-${BUILD_NUMBER}', returnStdout: true).trim()
-         env.network = tmp_param
+         env.network = sh (script: 'jenkins-${BUILD_NUMBER}', returnStdout: true).trim()
         }
     }
     stage('Build Jar') {
