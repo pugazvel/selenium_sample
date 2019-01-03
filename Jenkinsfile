@@ -1,3 +1,4 @@
+env.network='jenkins-${BUILD_NUMBER}'
 pipeline {
   agent {
     node {
