@@ -1,5 +1,5 @@
-def network='jenkins-${BUILD_NUMBER}'
-def network1='jenkins'
+def network="jenkins-${BUILD_NUMBER}"
+def network1="jenkins"
 
 pipeline {
   agent {
