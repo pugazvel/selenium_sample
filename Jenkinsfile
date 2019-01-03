@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-      label 'AppServer'
+      label 'iCreate_App_Node'
     }
 
   }
