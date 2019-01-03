@@ -37,7 +37,7 @@ pipeline {
     }
   }
   environment {
-    network = 'sh(returnStdout: true, script: \'jenkins-${BUILD_NUMBER}\')'
+    network = sh(returnStdout: true, script: 'jenkins-${BUILD_NUMBER}')
     seleniumHub = 'selenium-hub-${BUILD_NUMBER}'
     chrome = 'chrome-${BUILD_NUMBER}'
     firefox = 'firefox-${BUILD_NUMBER}'
