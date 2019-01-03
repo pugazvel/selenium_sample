@@ -5,11 +5,13 @@ pipeline {
     }
 
   }
+  parameters {
+        string(name: 'network', defaultValue: 'jenkins-${BUILD_NUMBER}', description: '')
+  }
   stages {
     stage('Build Jar') {
       steps {
-        sh '''def network=\'jenkins-${BUILD_NUMBER}\'
-echo ${network}'''
+        sh 'echo ${network}'
       }
     }
   }
