@@ -12,6 +12,7 @@ pipeline {
     stage('Build Jar') {
       steps {
         sh 'echo velraja'
+        sh 'echo ${BUILD_NUMBER}'
         sh 'echo ${network}'
         sh 'echo ${network1}'
       }
