@@ -1,3 +1,5 @@
+def network='jenkins-${BUILD_NUMBER}'
+
 pipeline {
   agent {
     node {
@@ -8,8 +10,7 @@ pipeline {
   stages {
     stage('Build Jar') {
       steps {
-        sh '''echo ${network}
-echo ${env.network}'''
+        sh 'echo ${network}'
       }
     }
   }
