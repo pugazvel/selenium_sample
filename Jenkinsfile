@@ -14,7 +14,7 @@ pipeline {
     stage('Build Image') {
       steps {
         script {
-          app = docker.build("pugazvel/containertest")
+          app = docker.build("velraja/containertest")
         }
 
       }
