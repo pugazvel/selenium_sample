@@ -11,8 +11,9 @@ pipeline {
   stages {
     stage('Build Jar') {
       steps {
-        sh 'println ${network}'
-        sh 'println ${network1}'
+        sh 'echo velraja'
+        sh 'echo ${network}'
+        sh 'echo ${network1}'
       }
     }
   }
