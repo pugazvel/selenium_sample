@@ -6,6 +6,12 @@ pipeline {
 
   }
   stages {
+    stage("make param global") {
+       steps {
+         tmp_param =  sh (script: 'jenkins-${BUILD_NUMBER}', returnStdout: true).trim()
+         env.network = tmp_param
+        }
+    }
     stage('Build Jar') {
       steps {
         sh 'mvn clean package -DskipTests'
@@ -32,15 +38,8 @@ pipeline {
     }
     stage('Setting Up Selenium Grid') {
       steps {
-        sh 'docker network create ${network}'
+        sh 'docker network create ${env.network}'
       }
     }
-  }
-  environment {
-    network = sh(returnStdout: true, script: 'jenkins-${BUILD_NUMBER}')
-    seleniumHub = 'selenium-hub-${BUILD_NUMBER}'
-    chrome = 'chrome-${BUILD_NUMBER}'
-    firefox = 'firefox-${BUILD_NUMBER}'
-    containertest = 'conatinertest-${BUILD_NUMBER}'
   }
 }
