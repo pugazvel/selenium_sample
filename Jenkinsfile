@@ -14,14 +14,17 @@ pipeline {
     stage('Sonar Scan') {
         steps {
             withSonarQubeEnv('SonarQube') {
-                sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
-                    '-f pom.xml ' +
-                    '-Dsonar.projectKey=com.testautomationguru.container ' +
-                    '-Dsonar.login=admin ' +
-                    '-Dsonar.password=DrlSonar@123 ' +
-                    '-Dsonar.language=java ' +
-                    '-Dsonar.sources=. ' +
-                    '-Dsonar.exclusions=**/*Test.java'
+                withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'sonar_user',
+	                usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) {
+                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
+                        '-f pom.xml ' +
+                        '-Dsonar.projectKey=com.testautomationguru.container ' +
+                        '-Dsonar.login=$USERNAME ' +
+                        '-Dsonar.password=$PASSWORD ' +
+                        '-Dsonar.language=java ' +
+                        '-Dsonar.sources=. ' +
+                        '-Dsonar.exclusions=**/*Test.java'
+                }
             }
         }
     }
