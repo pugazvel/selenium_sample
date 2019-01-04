@@ -6,6 +6,14 @@ pipeline {
 
   }
   stages {
+    stage('Sonar Scan') {
+        steps {
+            def scannerHome = tool 'SonarQube'
+            withSonarQubeEnv('SonarQube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
     stage('Build Jar') {
       steps {
         sh 'mvn clean package -DskipTests'
@@ -47,7 +55,6 @@ pipeline {
     stage('invoke_another_job') {
       steps {
         build 'icreate_backend'
-        waitForQualityGate true
       }
     }
   }
