@@ -47,6 +47,7 @@ pipeline {
     stage('invoke_another_job') {
       steps {
         build 'icreate_backend'
+        waitForQualityGate true
       }
     }
   }
