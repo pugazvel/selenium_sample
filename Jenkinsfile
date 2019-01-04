@@ -16,7 +16,7 @@ pipeline {
                     '-Dsonar.password=DrlSonar@123 ' +
                     '-Dsonar.language=java ' +
                     '-Dsonar.sources=. ' +
-                    '-Dsonar.exclusions=**/*Test*/**'
+                    '-Dsonar.exclusions=**/*Test'
             }
         }
     }
