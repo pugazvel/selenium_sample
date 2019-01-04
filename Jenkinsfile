@@ -8,7 +8,9 @@ pipeline {
   stages {
     stage('Sonar Scan') {
         steps {
-            sh 'printenv'
+            withSonarQubeEnv('SonarQube') {
+                sh 'sonar:sonar'
+            }
         }
     }
     stage('Build Jar') {
