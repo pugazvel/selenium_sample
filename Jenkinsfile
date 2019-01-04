@@ -15,7 +15,7 @@ pipeline {
                     '-Dsonar.login=admin ' +
                     '-Dsonar.password=DrlSonar@123 ' +
                     '-Dsonar.language=java ' +
-                    '-Dsonar.sources=./src/main/java/com/testautomationguru/container/pages/ '
+                    '-Dsonar.sources=. '
             }
         }
     }
