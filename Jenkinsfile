@@ -10,15 +10,13 @@ pipeline {
         steps {
             withSonarQubeEnv('SonarQube') {
                 sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar ' + 
-                    '-f all/pom.xml ' +
-                    '-Dsonar.projectKey=com.huettermann:all:master ' +
+                    '-f pom.xml ' +
+                    '-Dsonar.projectKey=com.testautomationguru.container ' +
                     '-Dsonar.login=admin ' +
                     '-Dsonar.password=DrlSonar@123 ' +
                     '-Dsonar.language=java ' +
                     '-Dsonar.sources=. ' +
-                    '-Dsonar.tests=. ' +
-                    '-Dsonar.test.inclusions=**/*Test*/** ' +
-                    '-Dsonar.exclusions=**/*Test*/**'
+                    '-Dsonar.tests=. '
             }
         }
     }
