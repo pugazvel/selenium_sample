@@ -44,6 +44,11 @@ pipeline {
         sh 'docker run --rm -e SELENIUM_HUB=selenium-hub-${BUILD_NUMBER} -e BROWSER=chrome -e MODULE=order-module.xml -v ${HOME}/selenium_report/order:/usr/share/tag/test-output  --network jenkins-${BUILD_NUMBER} velraja/containertest'
       }
     }
+    stage('invoke_another_job') {
+      steps {
+        build 'icreate_backend'
+      }
+    }
   }
   post {
     always {
